@@ -239,8 +239,8 @@ def training_loop(model, loss, optimizer, training_iter, dev_iter, train_eval_it
     for i in range(num_train_steps):
         model.train()
         vectors, labels = get_batch(next(training_iter))
-        vectors = Variable(torch.stack(vectors.cuda()).squeeze())
-        labels = Variable(torch.stack(labels.cuda()).squeeze())
+        vectors = Variable((torch.stack(vectors).squeeze()).cuda())
+        labels = Variable((torch.stack(labels).squeeze()).cuda())
 
         model.zero_grad()
         output = model(vectors)
