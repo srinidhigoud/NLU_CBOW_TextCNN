@@ -251,8 +251,8 @@ def training_loop(model, loss, optimizer, training_iter, dev_iter, train_eval_it
 
         if step % 100 == 0:
             legend.append([evaluate(model, train_eval_iter),evaluate(model, dev_iter)])
-            print( "Step %i; Loss %f; Train acc: %f; Dev acc %f" 
-                %(step, lossy.data[0], evaluate(model, train_eval_iter), evaluate(model, dev_iter)))
+            # print( "Step %i; Loss %f; Train acc: %f; Dev acc %f" 
+            #     %(step, lossy.data[0], evaluate(model, train_eval_iter), evaluate(model, dev_iter)))
 
         step += 1
     return legend
@@ -433,11 +433,11 @@ def hyperTuningCNN(window_size,n_filters,embedding_dim,learning_rate,dropout_pro
 
 legendCNN = collections.defaultdict(dict)
 print("iterating window_size CNN")
-for w in range(0,10,1):#range(1,11):
+for w in range(1,10,1):#range(1,11):
     hyperTuningCNN(w,n_filters,embedding_dim,learning_rate,dropout_prob,legendCNN,'window_size',w)
     pp.pprint(legendCNN)
 print("iterating n_filters CNN")
-for n in range(0,50,5):#range(10,21):
+for n in range(1,50,5):#range(10,21):
     hyperTuningCNN(window_size,n,embedding_dim,learning_rate,dropout_prob,legendCNN,'n_filters',n)
     pp.pprint(legendCNN)
 print("iterating embedding_dim CNN")
