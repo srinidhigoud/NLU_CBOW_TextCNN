@@ -178,7 +178,7 @@ def evaluate(model, data_iter):
     total = 0
     for i in range(len(data_iter)):
         vectors, labels = get_batch(data_iter[i])
-        vectors = Variable(torch.stack(vectors).squeeze())
+        vectors = Variable((torch.stack(vectors).squeeze()).cuda())
         labels = torch.stack(labels).squeeze()
         output = model(vectors)
         _, predicted = torch.max(output.data, 1)
